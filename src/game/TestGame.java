@@ -1,7 +1,7 @@
 package game;
 /**
  *@TODO(¹¦ÄÜ):
- *@CRATE_TIME:${DATE} ${TIME}
+ *@CRATE_TIME:  22-2-2  ÏÂÎç9:49
  *@AUTHOR: Li Chuanmin
  *@VERSION: v_0.1
  */
