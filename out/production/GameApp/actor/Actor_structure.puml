@@ -1,0 +1,758 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": ""
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": false,
+    "cutInterfaceStructures": false,
+    "cutDataStructures": false,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 6,
+    "backwardDepth": 6,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false // root node is included
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "actor.Actor"
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_1059891784 { 
+   	label=trigger
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Trigger1059891784[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Trigger</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   actor: Actor [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   isOn: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   name: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ isTrigger(a: Actor)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ rotate(angle: float, x: float, y: float): Trigger</TD></TR>
+<TR><TD ALIGN="LEFT" >+ scale(x: float, y: float): Trigger</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setName(name: String): Trigger</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setShape(shape: Shape): Trigger</TD></TR>
+<TR><TD ALIGN="LEFT" >+ translate(x: float, y: float): Trigger</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_109254796 { 
+   	label=scene
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   PhysicalScene109254796[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)PhysicalScene</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   physicalWorld: PhysicalWorld [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   renderWorld: RenderWorld [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   triggerWorld: TriggerWorld [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addActor(actor: Actor)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeActor(actor: Actor)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeActor(actorName: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ startWorld()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ stopWorld()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ suspendedWorld()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Scene109254796[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Scene</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   actors: List&lt;Actor&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   animation: Animation [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   height: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   panel: UIPanel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   spirit: Spirit [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   width: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ getActorByName(name: String): Actor</TD></TR>
+<TR><TD ALIGN="LEFT" >+ renderAxis(g2d: Graphics2D)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ renderBg(g2d: Graphics2D)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ renderBorder(g2d: Graphics2D)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ renderShape(g2d: Graphics2D)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ renderTriggerBorder(g2d: Graphics2D)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_1118509956 { 
+   	label=animation
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Animation1118509956[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Animation</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   activeSpirit: Spirit [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   defaultActiveSpirit: Spirit [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   isActiveLock: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   spirits: List&lt;Spirit&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addSpirit(spirit: Spirit)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ init()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setActiveLock(lock: boolean): Animation</TD></TR>
+<TR><TD ALIGN="LEFT" >+ start()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ stop()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ suspended()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Spirit1118509956[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Spirit</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   delayTime: long [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   name: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   oldTime: long [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   oneFrame: BufferedImage [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   state: Strategy [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ setName(name: String): Spirit</TD></TR>
+<TR><TD ALIGN="LEFT" >+ start()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ stop()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ suspended()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_113318802 { 
+   	label=world
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   PhysicalWorld113318802[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)PhysicalWorld</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   actors: List&lt;Actor&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   gravity: Vec2 [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   isStop: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   positionIterations: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   time_step: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   velocityIterations: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   world: World [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addActor(actor: Actor)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ beginContact(contact: Contact)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ endContact(contact: Contact)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ postSolve(contact: Contact, impulse: ContactImpulse)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ preSolve(contact: Contact, oldManifold: Manifold)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeActor(actor: Actor)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeActor(actorName: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ run()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ startWorld()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ stopWorld()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ suspendedWorld()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+RenderWorld113318802[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)RenderWorld</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   actors: List&lt;Actor&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   color: Color [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   g2d: Graphics2D [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   height: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   image: BufferedImage [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   isAxisRender: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   isBorderRender: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   isStop: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   isTriggerBorder: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   panel: UIPanel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   scene: Scene [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   width: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   x: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   y: float [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addActor(actor: Actor)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeActor(actor: Actor)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeActor(actorName: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ run()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ startWorld()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ stopWorld()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ suspendedWorld()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+TriggerWorld113318802[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)TriggerWorld</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   actors: List&lt;Actor&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addActor(actor: Actor)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeActor(actor: Actor)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeActor(actorName: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ run()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ startWorld()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ stopWorld()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ suspendedWorld()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_3165170 { 
+   	label=game
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   MoveAnimation3165170[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)MoveAnimation</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ init()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+MoveContorl3165170[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)MoveContorl</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   leftWalking: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   own: PhyActor [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   rightWalking: boolean [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ keyPressed(e: KeyEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ keyReleased(e: KeyEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ start()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ update()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+TestScript3165170[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)TestScript</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ update()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_3732 { 
+   	label=ui
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Button3732[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Button</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+   text: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ drawUI(g2d: Graphics2D)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+UICommpont3732[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)UICommpont</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   bkColor: Color [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   borderColor: Color [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   fontColor: Color [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   shape: Shape [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   state: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   x: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   y: float [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addListener(listener: UIListener)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ notifyAllListener()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeListener(listener: UIListener)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setShape(shape: Shape): HasShape</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+UIPanel3732[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)UIPanel</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   color: Color [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   height: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   oneFrame: BufferedImage [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   opacity: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   uis: List&lt;UI&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   width: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" ># Checked(p: Point2D, s: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ addUI(ui: UI)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ mouseMoved(e: MouseEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ mousePressed(e: MouseEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ mouseReleased(e: MouseEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ render(g2d: Graphics2D)</TD></TR>
+<TR><TD ALIGN="LEFT" ># renderOneFrame()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_907685685 { 
+   	label=script
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Script907685685[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Script</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   actor: Actor [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   name: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ TriggerHit(a: Actor, isOn: boolean)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ phyCollisionBegin(a: PhyActor)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ phyCollisonEnd(a: PhyActor)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setName(name: String): Script</TD></TR>
+<TR><TD ALIGN="LEFT" >+ start()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ update()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_92645877 { 
+   	label=actor
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Actor92645877[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(I)Actor</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ destroy()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getAngle(): float</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getCenter(): Vec2</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getDisplay(): Display</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getScene(): Scene</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setAngle(angle: float)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setDisplay(display: Display)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setScene(scene: Scene)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#F1E5FD"
+];
+
+CirclePhyActor92645877[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)CirclePhyActor</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   r: float [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ renderShape(g2d: Graphics2D)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ rotate(angle: float, x: float, y: float): CirclePhyActor</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setR(r: float): CirclePhyActor</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+DrawActor92645877[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)DrawActor</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   angle: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   animation: Animation [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   color: Color [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   display: Display [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   height: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   isBeTriggered: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   isFill: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   isRender: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   line: Path2D [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   name: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   points: Vec2[] [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   r: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   scene: Scene [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   scripts: List&lt;Script&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   shape: Shape [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   spirit: Spirit [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   triggers: List&lt;Trigger&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   width: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   x: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   y: float [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addScript(script: Script)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ addTrigger(trigger: Trigger)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ destroy()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeScript(name: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeScript(script: Script)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ renderAxis(g2d: Graphics2D)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ renderBg(g2d: Graphics2D)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ renderBorder(g2d: Graphics2D)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ renderShape(g2d: Graphics2D)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ renderTriggerBorder(g2d: Graphics2D)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ rotate(angle: float, x: float, y: float): DrawActor</TD></TR>
+<TR><TD ALIGN="LEFT" >+ scale(x: float, y: float): DrawActor</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setAnimation(animation: Animation): DrawActor</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setFill(isFill: boolean): DrawActor</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setName(name: String): DrawActor</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setShape(shape: Shape): DrawActor</TD></TR>
+<TR><TD ALIGN="LEFT" >+ translate(x: float, y: float): DrawActor</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+PhyActor92645877[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)PhyActor</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   angle: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   animation: Animation [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   body: Body [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   color: Color [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   density: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   display: Display [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   friction: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   isBeTriggered: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   isFill: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   isFixedRotation: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   isRender: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   isStatic: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   line: Path2D [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   name: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   restitution: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   scene: Scene [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   scripts: List&lt;Script&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   shape: Shape [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   spirit: Spirit [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   triggers: List&lt;Trigger&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   x: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   y: float [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addScript(script: Script)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ addTrigger(trigger: Trigger)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ destroy()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ init(world: World)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeScript(name: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeScript(script: Script)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ renderAxis(g2d: Graphics2D)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ renderBg(g2d: Graphics2D)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ renderBorder(g2d: Graphics2D)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ renderTriggerBorder(g2d: Graphics2D)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ rotate(angle: float, x: float, y: float): PhyActor</TD></TR>
+<TR><TD ALIGN="LEFT" >+ scale(x: float, y: float): PhyActor</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setAnimation(animation: Animation): PhyActor</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setDensity(density: float): PhyActor</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setFixedRotation(f: boolean): PhyActor</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setFriction(friction: float): PhyActor</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setName(name: String): PhyActor</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setPhysicalAttr(d: float, f: float, r: float): PhyActor</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setRestitution(restitution: float): PhyActor</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setShape(shape: Shape): HasShape</TD></TR>
+<TR><TD ALIGN="LEFT" >+ translate(x: float, y: float): PhyActor</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+PolygonPhyActor92645877[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)PolygonPhyActor</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   points: Vec2[] [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   shapeCenter: Vec2 [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >- getShapeByVec2(a: Vec2[]): Shape</TD></TR>
+<TR><TD ALIGN="LEFT" >+ renderShape(g2d: Graphics2D)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setPoints(points: Vec2[]): PolygonPhyActor</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+RectPhyActor92645877[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)RectPhyActor</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   height: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   width: float [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ renderShape(g2d: Graphics2D)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ renderTriggerBorder(g2d: Graphics2D)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setHeight(height: float): RectPhyActor</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setWidth(width: float): RectPhyActor</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+ScaleDisplay92645877[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ScaleDisplay</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ display(actor: Actor, image: BufferedImage, g2d: Graphics2D)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_951543133 { 
+   	label=control
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   UserContorl951543133[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)UserContorl</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ keyPressed(e: KeyEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ keyReleased(e: KeyEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ keyTyped(e: KeyEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ mouseClicked(e: MouseEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ mouseDragged(e: MouseEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ mouseEntered(e: MouseEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ mouseExited(e: MouseEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ mouseMoved(e: MouseEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ mousePressed(e: MouseEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ mouseReleased(e: MouseEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ mouseWheelMoved(e: MouseWheelEvent)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+'edges    
+Actor92645877 -> DrawActor92645877[arrowhead=none, arrowtail=empty, dir=both];
+Actor92645877 -> PhyActor92645877[arrowhead=none, arrowtail=empty, dir=both];
+Actor92645877 -> Trigger1059891784[arrowhead=none, arrowtail=empty, dir=both];
+Actor92645877 -> UICommpont3732[arrowhead=none, arrowtail=empty, dir=both];
+Animation1118509956 -> MoveAnimation3165170[arrowhead=none, arrowtail=empty, dir=both];
+Animation1118509956 -> Spirit1118509956[label="activeSpirit
+[0..1]"];
+Animation1118509956 -> Spirit1118509956[label="defaultActiveSpirit
+[0..1]"];
+Animation1118509956 -> Spirit1118509956[label="spirits
+[0..*]"];
+DrawActor92645877 -> Animation1118509956[label="animation
+[0..1]"];
+DrawActor92645877 -> Scene109254796[label="scene
+[0..1]"];
+DrawActor92645877 -> Script907685685[label="scripts
+[0..*]"];
+DrawActor92645877 -> Spirit1118509956[label="spirit
+[0..1]"];
+DrawActor92645877 -> Trigger1059891784[label="triggers
+[0..*]"];
+MoveContorl3165170 -> PhyActor92645877[label="own
+[0..1]"];
+PhyActor92645877 -> Animation1118509956[label="animation
+[0..1]"];
+PhyActor92645877 -> CirclePhyActor92645877[arrowhead=none, arrowtail=empty, dir=both];
+PhyActor92645877 -> PolygonPhyActor92645877[arrowhead=none, arrowtail=empty, dir=both];
+PhyActor92645877 -> RectPhyActor92645877[arrowhead=none, arrowtail=empty, dir=both];
+PhyActor92645877 -> ScaleDisplay92645877[arrowhead=none, arrowtail=empty, dir=both];
+PhyActor92645877 -> Scene109254796[label="scene
+[0..1]"];
+PhyActor92645877 -> Script907685685[label="scripts
+[0..*]"];
+PhyActor92645877 -> Spirit1118509956[label="spirit
+[0..1]"];
+PhyActor92645877 -> Trigger1059891784[label="triggers
+[0..*]"];
+PhysicalScene109254796 -> PhysicalWorld113318802[label="physicalWorld
+[0..1]"];
+PhysicalScene109254796 -> RenderWorld113318802[label="renderWorld
+[0..1]"];
+PhysicalScene109254796 -> TriggerWorld113318802[label="triggerWorld
+[0..1]"];
+PhysicalWorld113318802 -> Actor92645877[label="actors
+[0..*]"];
+RenderWorld113318802 -> Actor92645877[label="actors
+[0..*]"];
+RenderWorld113318802 -> PhysicalWorld113318802[arrowhead=none, arrowtail=empty, dir=both];
+RenderWorld113318802 -> Scene109254796[arrowhead=none, arrowtail=empty, dir=both];
+RenderWorld113318802 -> Scene109254796[label="scene
+[0..1]"];
+RenderWorld113318802 -> TriggerWorld113318802[arrowhead=none, arrowtail=empty, dir=both];
+RenderWorld113318802 -> UIPanel3732[label="panel
+[0..1]"];
+Scene109254796 -> Actor92645877[arrowhead=none, arrowtail=empty, dir=both];
+Scene109254796 -> Actor92645877[label="actors
+[0..*]"];
+Scene109254796 -> Animation1118509956[label="animation
+[0..1]"];
+Scene109254796 -> PhysicalScene109254796[arrowhead=none, arrowtail=empty, dir=both];
+Scene109254796 -> PhysicalWorld113318802[arrowhead=none, arrowtail=empty, dir=both];
+Scene109254796 -> RenderWorld113318802[arrowhead=none, arrowtail=empty, dir=both];
+Scene109254796 -> Spirit1118509956[label="spirit
+[0..1]"];
+Scene109254796 -> TriggerWorld113318802[arrowhead=none, arrowtail=empty, dir=both];
+Scene109254796 -> UIPanel3732[label="panel
+[0..1]"];
+Script907685685 -> Actor92645877[arrowhead=none, arrowtail=empty, dir=both];
+Script907685685 -> Actor92645877[label="actor
+[0..1]"];
+Script907685685 -> MoveContorl3165170[arrowhead=none, arrowtail=empty, dir=both];
+Script907685685 -> Spirit1118509956[arrowhead=none, arrowtail=empty, dir=both];
+Script907685685 -> TestScript3165170[arrowhead=none, arrowtail=empty, dir=both];
+Script907685685 -> Trigger1059891784[arrowhead=none, arrowtail=empty, dir=both];
+TriggerWorld113318802 -> Actor92645877[label="actors
+[0..*]"];
+UICommpont3732 -> Button3732[arrowhead=none, arrowtail=empty, dir=both];
+UIPanel3732 -> Actor92645877[arrowhead=none, arrowtail=empty, dir=both];
+UIPanel3732 -> Actor92645877[label="uis
+[0..*]"];
+UIPanel3732 -> Trigger1059891784[arrowhead=none, arrowtail=empty, dir=both];
+UIPanel3732 -> UICommpont3732[arrowhead=none, arrowtail=empty, dir=both];
+UserContorl951543133 -> Script907685685[arrowhead=none, arrowtail=empty, dir=both];
+UserContorl951543133 -> UIPanel3732[arrowhead=none, arrowtail=empty, dir=both];
+    
+}
+@enduml

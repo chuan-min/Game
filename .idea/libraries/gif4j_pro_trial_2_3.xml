@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="gif4j_pro_trial_2.3">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/gif4j_pro_trial_2.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jbox2d-library-2.1.2.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/log4j-1.2.17.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/slf4j-api-1.7.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/slf4j-log4j12-1.7.7.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
