@@ -13,7 +13,9 @@ public class GameWorld {
 	public static final float RETA = 10;
 	
 	public static ViewPort view = null;
-	
+	/**
+	 * CopyOnWriteArrayList:是线程安全的ArrayList类,防止多线程同时写数据时覆盖数据的问题
+	 */
 	public static List<Scene> scenes = new CopyOnWriteArrayList<Scene>();
 	
 	public static Scene getSceneByName(String name){

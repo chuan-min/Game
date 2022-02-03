@@ -1,4 +1,10 @@
 package ui;
+/**
+ *@TODO(功能):用户控制面板
+ *@CRATE_TIME:  22-2-3  下午2:38
+ *@AUTHOR: Li Chuanmin
+ *@VERSION: v_0.1
+ */
 
 import java.awt.AlphaComposite;
 import java.awt.Color;
@@ -19,14 +25,15 @@ public class UIPanel extends UserContorl{
 	private BufferedImage oneFrame = null;
 	private int width = 0;
 	private int height = 0;
-	private float opacity = 0f;
-	private Color color = Color.white;
+	private float opacity = 0.2f;
+	private Color color = Color.LIGHT_GRAY;
 	
 	public UIPanel(int w,int h) {
 		width = w;
 		height = h;
 		oneFrame = new BufferedImage(w, h, BufferedImage.TYPE_3BYTE_BGR);
 		uis = new ArrayList<UI>();
+
 	}
 	
 	public void addUI(UI ui){

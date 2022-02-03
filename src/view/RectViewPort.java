@@ -14,10 +14,10 @@ public class RectViewPort extends ViewPort {
 	public RectViewPort(int x,int y,int width,int height) {
 		setSize(width, height + 29);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLocationRelativeTo(null);
 		setResizable(false);
 		setLayout(null);
-		
+		setLocationRelativeTo(null);
+
 	}
 
 	@Override

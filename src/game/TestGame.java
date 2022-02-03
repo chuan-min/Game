@@ -11,7 +11,7 @@ import actor.PolygonPhyActor;
 import actor.RectPhyActor;
 import animation.NormalStrategy;
 import animation.Spirit;
-import com.mm.game.util.R;
+import util.R;
 import core.Game;
 import core.GameWorld;
 import org.jbox2d.common.Vec2;
@@ -29,7 +29,7 @@ public class TestGame extends Game {
 		RectViewPort viewPort = new RectViewPort(0,0,500, 350);
 		
 		scene = new PhysicalScene(500,350,Color.white, 2.0f/60.0f, 10f);
-		Spirit bk = new Spirit(new NormalStrategy(R.ROOT_PATH+"/images/bk.gif", "gif"));
+		Spirit bk = new Spirit(new NormalStrategy(R.IMAGE_PATH+"/bk.gif", "gif"));
 		bk.start();
 		scene.setSpirit(bk);
 		viewPort.setScene(scene);
@@ -69,7 +69,7 @@ public class TestGame extends Game {
 		
 		DrawActor cActor = new DrawActor(50, 50, 20);
 		cActor.addScript(new TestScript());
-		Spirit spirit = new Spirit(new NormalStrategy(R.ROOT_PATH+"/images/2.gif", "gif"));
+		Spirit spirit = new Spirit(new NormalStrategy(R.IMAGE_PATH+"/2.gif", "gif"));
 		spirit.start();
 		cActor.setSpirit(spirit);
 		

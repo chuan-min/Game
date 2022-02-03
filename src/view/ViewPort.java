@@ -1,5 +1,10 @@
 package view;
-
+/**
+ *@TODO(功能):窗口父类
+ *@CRATE_TIME:  22-2-3  下午1:50
+ *@AUTHOR: Li Chuanmin
+ *@VERSION: v_0.1
+ */
 import javax.swing.JFrame;
 
 import core.GameWorld;

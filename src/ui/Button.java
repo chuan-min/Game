@@ -1,7 +1,7 @@
 package ui;
 
-import java.awt.FontMetrics;
-import java.awt.Graphics2D;
+import javax.swing.border.TitledBorder;
+import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
@@ -10,7 +10,7 @@ public class Button extends UICommpont{
 	public String text = "button";
 	
 	/**
-	 * ????????????????????
+	 * Ô²½Ç¾ØÐÎ
 	 * @param x x????
 	 * @param y y????
 	 * @param w button???
@@ -56,6 +56,7 @@ public class Button extends UICommpont{
 			g2d.setColor(borderColor);
 			g2d.draw(shape);
 			g2d.setColor(fontColor);
+			g2d.setFont(new Font("ºÚÌå",Font.BOLD,20));
 			g2d.drawString(text,stringX,stringY);
 			break;
 		case UI.MousePressed:

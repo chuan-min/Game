@@ -1,4 +1,4 @@
-package com.mm.game.util;
+package util;
 
 import javax.sound.sampled.*;
 import java.io.File;

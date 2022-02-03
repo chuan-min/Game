@@ -1,4 +1,4 @@
-package com.mm.game.util;
+package util;
 
 /**
  * 方向(枚举类型)

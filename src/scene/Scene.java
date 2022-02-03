@@ -1,7 +1,23 @@
 package scene;
+
+import  actor.Actor;
+import actor.Actor;
+import animation.Animation;
+import animation.Spirit;
+import core.GameWorld;
+import core.Render;
+import ui.UIPanel;
+import world.AbstractWorld;
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.List;
+
 /**
- *
- * Scene:chang
+ *@TODO(功能): Scene:场景类(是一个JPanel)
+ *@CRATE_TIME:  22-2-3  下午2:07
+ *@AUTHOR: Li Chuanmin
+ *@VERSION: v_0.1
  */
 
 import actor.Actor;
@@ -17,7 +33,7 @@ import java.awt.*;
 import java.util.List;
 
 
-public abstract class Scene extends JPanel implements AbstractWorld,Render{
+public abstract class Scene extends JPanel implements AbstractWorld, Render {
 	
 	/**
 	 * Scene是场景的意思
